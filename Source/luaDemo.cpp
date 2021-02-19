@@ -45,6 +45,7 @@ int main()
     getGlobalNamespace(L).
         beginNamespace("kernel").
             addFunction("addToList", kernel::addToList).
+            addFunction("delToList", kernel::delToList).
             addFunction("getGlId", kernel::getGlId).
             addFunction("getElem", kernel::getElem).
         endNamespace();
@@ -56,9 +57,9 @@ int main()
     lua_buff_variable(); //Выполняем функцию main из lua скрипта
 
     std::cin.get();
-    
+
     for (std::vector<DATA*>::iterator it = kernel::dt_list.begin(); it != kernel::dt_list.end();) { //Очищаем память
-        delete *it;
+        delete* it;
         it = kernel::dt_list.erase(it);
     }
 
